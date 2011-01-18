@@ -1,24 +1,22 @@
 package test.test;
 
+
+
 import android.app.Activity;
+import android.app.TabActivity;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TabHost;
 import android.widget.TextView;
 
-public class test extends Activity implements OnClickListener {
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		Button button = (Button) findViewById(R.id.Button01);
-		button.setOnClickListener((OnClickListener) this);
-	}
-
+public class test extends TabActivity implements OnClickListener {
 	// Implement the OnClickListener callback
 	public void onClick(View v) {
 		// do something when the button is clicked
@@ -45,7 +43,62 @@ public class test extends Activity implements OnClickListener {
 //			e.printStackTrace();
 //		}
 
+	}/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+TabHost tabHost = getTabHost();
+        
+        LayoutInflater.from(this).inflate(R.layout.ranking, tabHost.getTabContentView(), true);
+        tabHost.addTab(tabHost.newTabSpec("Home")
+                .setIndicator("Home")
+                .setContent(R.id.LinearLayout02));
+        tabHost.addTab(tabHost.newTabSpec("Friend")
+                .setIndicator("Friend")
+                .setContent(R.id.LinearLayout02));
+        tabHost.addTab(tabHost.newTabSpec("Topic")
+                .setIndicator("Topic")
+                .setContent(R.id.LinearLayout02));
+        tabHost.addTab(tabHost.newTabSpec("Activity")
+                .setIndicator("Activity")
+                .setContent(R.id.LinearLayout02));
+        tabHost.addTab(tabHost.newTabSpec("Ranking")
+                .setIndicator("Ranking")
+                .setContent(R.id.LinearLayout01));
+//		   Resources res = getResources(); // Resource object to get Drawables
+//		    TabHost tabHost = getTabHost();  // The activity TabHost
+//		    TabHost.TabSpec spec;  // Resusable TabSpec for each tab
+//		    Intent intent;  // Reusable Intent for each tab
+//
+//		    // Create an Intent to launch an Activity for the tab (to be reused)
+//		    intent = new Intent().setClass(this, RankingActivity.class);
+//
+//		    // Initialize a TabSpec for each tab and add it to the TabHost
+//		    spec = tabHost.newTabSpec("artists").setIndicator("Artists",
+//		                      res.getDrawable(R.drawable.ic_tab_artists))
+//		                  .setContent(intent);
+//		    tabHost.addTab(spec);
+
+		    // Do the same for the other tabs
+//		    intent = new Intent().setClass(this, AlbumsActivity.class);
+//		    spec = tabHost.newTabSpec("albums").setIndicator("Albums",
+//		                      res.getDrawable(R.drawable.ic_tab_albums))
+//		                  .setContent(intent);
+//		    tabHost.addTab(spec);
+
+//		    intent = new Intent().setClass(this, SongsActivity.class);
+//		    spec = tabHost.newTabSpec("songs").setIndicator("Songs",
+//		                      res.getDrawable(R.drawable.ic_tab_songs))
+//		                  .setContent(intent);
+//		    tabHost.addTab(spec);
+
+//		    tabHost.setCurrentTab(0);
+
+		    Button button = (Button) findViewById(R.id.Button01);
+			button.setOnClickListener((OnClickListener) this);
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
